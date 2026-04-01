@@ -52,8 +52,7 @@ const MapPage = () => {
     // Add heatmap
     const heatData: [number, number, number][] = reports.map((r) => [r.lat, r.lng, 0.8]);
     if (heatData.length > 0) {
-      const { heatLayer } = require("leaflet.heat") as typeof import("leaflet.heat");
-      const heat = heatLayer(heatData, {
+      const heat = (L as any).heatLayer(heatData, {
         radius: 35,
         blur: 25,
         maxZoom: 15,
