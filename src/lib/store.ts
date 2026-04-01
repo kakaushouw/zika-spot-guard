@@ -3,6 +3,7 @@ import { useState, useEffect, useSyncExternalStore } from "react";
 export interface Report {
   id: string;
   description: string;
+  address?: string;
   status: "pending" | "confirmed" | "resolved" | "discarded";
   date: string;
   lat: number;
@@ -11,10 +12,10 @@ export interface Report {
 }
 
 const initialReports: Report[] = [
-  { id: "1", description: "Água parada em pneu abandonado na Rua das Flores", status: "confirmed", date: "2026-03-28", lat: -3.1190, lng: -60.0217 },
-  { id: "2", description: "Caixa d'água destampada no terreno baldio", status: "pending", date: "2026-03-30", lat: -3.1050, lng: -60.0350 },
-  { id: "3", description: "Vaso com água acumulada na calçada", status: "resolved", date: "2026-03-25", lat: -3.0900, lng: -60.0100 },
-  { id: "4", description: "Entulho com acúmulo de água", status: "discarded", date: "2026-03-20", lat: -3.1300, lng: -60.0500 },
+  { id: "1", description: "Água parada em pneu abandonado na Rua das Flores", address: "Rua das Flores, 120 - Centro", status: "confirmed", date: "2026-03-28", lat: -3.1190, lng: -60.0217 },
+  { id: "2", description: "Caixa d'água destampada no terreno baldio", address: "Av. Brasil, 500 - Compensa", status: "pending", date: "2026-03-30", lat: -3.1050, lng: -60.0350 },
+  { id: "3", description: "Vaso com água acumulada na calçada", address: "Rua Amazonas, 85 - Adrianópolis", status: "resolved", date: "2026-03-25", lat: -3.0900, lng: -60.0100 },
+  { id: "4", description: "Entulho com acúmulo de água", address: "Rua Pará, 300 - Praça 14", status: "discarded", date: "2026-03-20", lat: -3.1300, lng: -60.0500 },
 ];
 
 let reports: Report[] = [...initialReports];
