@@ -3,6 +3,7 @@ import { useState, useEffect, useSyncExternalStore } from "react";
 export interface Report {
   id: string;
   description: string;
+  address?: string;
   status: "pending" | "confirmed" | "resolved" | "discarded";
   date: string;
   lat: number;
