@@ -72,26 +72,37 @@ const ReportPage = () => {
     }
   };
 
-  const geocodeAddress = async () => {
-    if (!address.trim()) return;
-    setGeocoding(true);
-    try {
-      const query = address.includes("Manaus") ? address : `${address}, Manaus, AM, Brasil`;
-      const res = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`,
-        { headers: { "Accept-Language": "pt-BR" } }
-      );
-      const data = await res.json();
-      if (data.length > 0) {
-        setCoords({ lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) });
-        setAddress(data[0].display_name.split(",").slice(0, 3).join(",").trim());
-        setGpsStatus("done");
-      }
-    } catch {
-      // Silently fail
-    } finally {
-      setGeocoding(false);
+  const searchAddresses = (query: string) => {
+    if (searchTimeout.current) clearTimeout(searchTimeout.current);
+    if (query.trim().length < 3) {
+      setSuggestions([]);
+      setShowSuggestions(false);
+      return;
     }
+    searchTimeout.current = setTimeout(async () => {
+      try {
+        const fullQuery = query.includes("Manaus") ? query : `${query}, Manaus, AM, Brasil`;
+        const res = await fetch(
+          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(fullQuery)}&limit=5&countrycodes=br`,
+          { headers: { "Accept-Language": "pt-BR" } }
+        );
+        const data = await res.json();
+        setSuggestions(data);
+        setShowSuggestions(data.length > 0);
+      } catch {
+        setSuggestions([]);
+      }
+    }, 400);
+  };
+
+  const selectSuggestion = (suggestion: { display_name: string; lat: string; lon: string }) => {
+    const shortName = suggestion.display_name.split(",").slice(0, 3).join(",").trim();
+    setAddress(shortName);
+    setCoords({ lat: parseFloat(suggestion.lat), lng: parseFloat(suggestion.lon) });
+    setGpsStatus("done");
+    setUseAddress(true);
+    setShowSuggestions(false);
+    setSuggestions([]);
   };
 
   const handleImagePick = () => {
