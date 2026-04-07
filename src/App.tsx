@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AnimatePresence } from "framer-motion";
+import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import CitizenDashboard from "./pages/CitizenDashboard";
 import ReportPage from "./pages/ReportPage";
@@ -23,7 +24,8 @@ const App = () => (
       <BrowserRouter>
         <AnimatePresence mode="wait">
           <Routes>
-            <Route path="/" element={<LoginPage />} />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/dashboard" element={<CitizenDashboard />} />
             <Route path="/report" element={<ReportPage />} />
             <Route path="/map" element={<MapPage />} />
