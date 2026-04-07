@@ -26,16 +26,6 @@ const App = () => (
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginPage />} />
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <AnimatePresence mode="wait">
-          <Routes>
-            <Route path="/" element={<LoginPage />} />
             <Route path="/dashboard" element={<CitizenDashboard />} />
             <Route path="/report" element={<ReportPage />} />
             <Route path="/map" element={<MapPage />} />
