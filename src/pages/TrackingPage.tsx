@@ -16,11 +16,23 @@ const statusOptions: { value: Report["status"]; label: string }[] = [
 
 const TrackingPage = () => {
   const navigate = useNavigate();
+  const { user, loading: authLoading } = useAuth();
   const reports = useReports();
   const [editingId, setEditingId] = useState<string | null>(null);
 
-  const handleStatusChange = (id: string, status: Report["status"]) => {
-    updateReportStatus(id, status);
+  useEffect(() => {
+    if (!authLoading && !user) {
+      navigate("/login");
+    }
+  }, [user, authLoading, navigate]);
+
+  useEffect(() => {
+    const cleanup = startReportsSync();
+    return cleanup;
+  }, []);
+
+  const handleStatusChange = async (id: string, status: Report["status"]) => {
+    await updateReportStatus(id, status);
     setEditingId(null);
   };
 
