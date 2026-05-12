@@ -112,7 +112,7 @@ export async function addReport(report: Omit<Report, "id" | "user_id" | "status"
     .single();
 
   if (error) throw error;
-  return data;
+  return data as Report;
 }
 
 export async function updateReportStatus(id: string, status: ReportStatus): Promise<void> {
