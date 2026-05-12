@@ -31,6 +31,12 @@ const ReportPage = () => {
   const markerRef = useRef<L.Marker | null>(null);
 
   useEffect(() => {
+    if (!authLoading && !user) {
+      navigate("/login");
+    }
+  }, [user, authLoading, navigate]);
+
+  useEffect(() => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
