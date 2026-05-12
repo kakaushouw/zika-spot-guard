@@ -89,7 +89,7 @@ export async function getReports(): Promise<Report[]> {
     .order("created_at", { ascending: false });
 
   if (error) throw error;
-  return data ?? [];
+  return (data ?? []) as Report[];
 }
 
 export async function addReport(report: Omit<Report, "id" | "user_id" | "status" | "date" | "created_at">): Promise<Report> {
