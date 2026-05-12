@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { LogOut, CheckCircle, Shield, Trash2, X, MapPin, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import PageTransition from "@/components/PageTransition";
 import StatusBadge from "@/components/StatusBadge";
-import { useReports, updateReportStatus, Report } from "@/lib/store";
+import { useReports, updateReportStatus, startReportsSync, signOut, useAuth, Report } from "@/lib/store";
 
 const AgentDashboard = () => {
   const navigate = useNavigate();
