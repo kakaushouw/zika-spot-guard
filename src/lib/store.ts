@@ -18,7 +18,7 @@ export interface Report {
 
 // Auth hooks
 export function useAuth() {
-  const [user, setUser] = useState(supabase.auth.getUser().then(({ data }) => data.user));
+  const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
