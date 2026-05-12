@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Calendar, MapPin, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import PageTransition from "@/components/PageTransition";
 import StatusBadge from "@/components/StatusBadge";
-import { useReports, updateReportStatus, type Report } from "@/lib/store";
+import { useReports, updateReportStatus, startReportsSync, useAuth, type Report } from "@/lib/store";
 
 const statusOptions: { value: Report["status"]; label: string }[] = [
   { value: "pending", label: "Pendente" },
@@ -16,11 +16,23 @@ const statusOptions: { value: Report["status"]; label: string }[] = [
 
 const TrackingPage = () => {
   const navigate = useNavigate();
+  const { user, loading: authLoading } = useAuth();
   const reports = useReports();
   const [editingId, setEditingId] = useState<string | null>(null);
 
-  const handleStatusChange = (id: string, status: Report["status"]) => {
-    updateReportStatus(id, status);
+  useEffect(() => {
+    if (!authLoading && !user) {
+      navigate("/login");
+    }
+  }, [user, authLoading, navigate]);
+
+  useEffect(() => {
+    const cleanup = startReportsSync();
+    return cleanup;
+  }, []);
+
+  const handleStatusChange = async (id: string, status: Report["status"]) => {
+    await updateReportStatus(id, status);
     setEditingId(null);
   };
 
@@ -70,7 +82,7 @@ const TrackingPage = () => {
                       <Calendar className="h-3 w-3" />
                       {report.date}
                     </span>
-                    {report.imageUrl && (
+                    {report.image_url && (
                       <span className="text-primary text-xs">📷 Com foto</span>
                     )}
                   </div>

@@ -1,20 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { LogOut, CheckCircle, Shield, Trash2, X, MapPin, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import PageTransition from "@/components/PageTransition";
 import StatusBadge from "@/components/StatusBadge";
-import { useReports, updateReportStatus, Report } from "@/lib/store";
+import { useReports, updateReportStatus, startReportsSync, signOut, useAuth, Report } from "@/lib/store";
 
 const AgentDashboard = () => {
   const navigate = useNavigate();
+  const { user, loading: authLoading } = useAuth();
   const reports = useReports();
   const [selectedReport, setSelectedReport] = useState<Report | null>(null);
 
   const pendingReports = reports.filter((r) => r.status === "pending");
   const confirmedCount = reports.filter((r) => r.status === "confirmed").length;
   const resolvedCount = reports.filter((r) => r.status === "resolved").length;
+
+  useEffect(() => {
+    if (!authLoading && !user) {
+      navigate("/login");
+    }
+  }, [user, authLoading, navigate]);
+
+  useEffect(() => {
+    const cleanup = startReportsSync();
+    return cleanup;
+  }, []);
 
   return (
     <PageTransition>
@@ -28,7 +40,10 @@ const AgentDashboard = () => {
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => navigate("/")}
+            onClick={async () => {
+              await signOut();
+              navigate("/login");
+            }}
             className="text-destructive hover:bg-destructive/10 font-semibold"
           >
             <LogOut className="h-4 w-4 mr-1" />

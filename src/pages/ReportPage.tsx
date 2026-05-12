@@ -6,12 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import PageTransition from "@/components/PageTransition";
-import { addReport } from "@/lib/store";
+import { addReport, uploadReportImage, useAuth } from "@/lib/store";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 const ReportPage = () => {
   const navigate = useNavigate();
+  const { user, loading: authLoading } = useAuth();
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
   const [gpsStatus, setGpsStatus] = useState<"loading" | "done" | "error">("loading");
@@ -28,6 +29,12 @@ const ReportPage = () => {
   const mapRef = useRef<HTMLDivElement>(null);
   const leafletMapRef = useRef<L.Map | null>(null);
   const markerRef = useRef<L.Marker | null>(null);
+
+  useEffect(() => {
+    if (!authLoading && !user) {
+      navigate("/login");
+    }
+  }, [user, authLoading, navigate]);
 
   useEffect(() => {
     if ("geolocation" in navigator) {
@@ -168,13 +175,25 @@ const ReportPage = () => {
     reader.readAsDataURL(file);
   };
 
-  const handleSubmit = () => {
-    addReport({
+  const handleSubmit = async () => {
+    let image_url: string | undefined;
+    
+    if (fileInputRef.current?.files?.[0]) {
+      try {
+        image_url = await uploadReportImage(fileInputRef.current.files[0]);
+      } catch {
+        // Continue without image
+      }
+    } else if (imagePreview) {
+      image_url = imagePreview;
+    }
+
+    await addReport({
       description: description || "Foco registrado via app",
       address: address || undefined,
       lat: coords?.lat ?? -3.119,
       lng: coords?.lng ?? -60.0217,
-      imageUrl: imagePreview || undefined,
+      image_url,
     });
     navigate("/tracking");
   };
