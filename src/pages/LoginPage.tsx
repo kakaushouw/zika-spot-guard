@@ -180,7 +180,16 @@ const LoginPage = () => {
             </Button>
           </div>
 
-          <p className="mt-6 text-center text-sm text-muted-foreground">
+          <div className="mt-2 text-center">
+            <button
+              onClick={() => navigate("/forgot-password")}
+              className="text-sm text-muted-foreground hover:text-accent transition-colors"
+            >
+              Esqueceu a senha?
+            </button>
+          </div>
+
+          <p className="mt-4 text-center text-sm text-muted-foreground">
             {isLogin ? "Não tem conta? " : "Já tem conta? "}
             <button
               onClick={() => { setIsLogin(!isLogin); setError(""); }}

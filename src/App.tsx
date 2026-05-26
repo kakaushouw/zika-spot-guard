@@ -28,6 +28,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route path="/dashboard" element={<CitizenDashboard />} />
             <Route path="/report" element={<ReportPage />} />
             <Route path="/map" element={<MapPage />} />
