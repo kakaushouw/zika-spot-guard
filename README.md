@@ -193,7 +193,11 @@ Desenvolvido por estudantes do curso de **Análise e Desenvolvimento de Sistemas
 
 | Nome | Papel |
 |------|-------|
-| *(seu nome aqui)* | Desenvolvimento & UX/UI |
+| *Kaell Calacina* | desenvolvedor do sistema e documentador |
+| *Ana Lívia* | documentadora |
+| *Vitória Azevedo* | testadora e documentadora |
+| *Luiz Henrique* | documentador |
+| *João Etto* | designer e documentador|
 
 ---
 
