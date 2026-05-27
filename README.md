@@ -1,11 +1,7 @@
-<div align="center">
-
-<img src="https://raw.githubusercontent.com/kakaushouw/zika-spot-guard/main/public/logo.png" alt="ZikaMaps Logo" width="120"/>
-
 # ZIKAMAPS
 ### Monitoramento de Arbovírus
 
-**Plataforma de vigilância participativa para o combate ao _Aedes aegypti_ em Manaus — AM**
+**Plataforma de monitoramento para o combate ao _Aedes aegypti_ em Manaus — AM**
 
 [![Status](https://img.shields.io/badge/status-em%20desenvolvimento-4AADA8?style=flat-square)](https://github.com/kakaushouw/zika-spot-guard)
 [![Licença](https://img.shields.io/badge/licença-MIT-4AADA8?style=flat-square)](LICENSE)
@@ -148,10 +144,9 @@ zika-spot-guard/
 
 ## Contexto Acadêmico
 
-Este projeto é desenvolvido como **Trabalho de Conclusão de Curso (TCC)** no curso de Análise e Desenvolvimento de Sistemas, com foco na interseção entre:
+Este projeto é desenvolvido como **Trabalho de Conclusão de Curso (TCC)** no curso de ADS, com foco em:
 
-- **Engenharia de Software** — arquitetura, requisitos e implementação da aplicação
-- **UX/UI Design** — pesquisa de usuário, wireframes, prototipação e testes de usabilidade
+- **desenvolvimento de Software** — arquitetura, requisitos e implementação
 - **Saúde Pública Digital** — vigilância epidemiológica participativa e combate à subnotificação
 
 A metodologia de pesquisa adotada é o **Design Science Research (DSR)**, com avaliação de usabilidade pela **Escala SUS (System Usability Scale)**.
@@ -175,21 +170,9 @@ A metodologia de pesquisa adotada é o **Design Science Research (DSR)**, com av
 
 ---
 
-## Contribuindo
-
-Contribuições são bem-vindas! Se quiser sugerir melhorias, reportar bugs ou propor novas funcionalidades:
-
-1. Fork o repositório
-2. Crie uma branch para sua feature (`git checkout -b feature/minha-feature`)
-3. Commit suas alterações (`git commit -m 'feat: adiciona minha feature'`)
-4. Push para a branch (`git push origin feature/minha-feature`)
-5. Abra um Pull Request
-
----
-
 ## Equipe
 
-Desenvolvido por estudantes do curso de **Análise e Desenvolvimento de Sistemas**.
+Desenvolvido por estudantes do curso de **ADS**.
 
 | Nome | Papel |
 |------|-------|
