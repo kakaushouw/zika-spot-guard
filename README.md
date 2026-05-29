@@ -258,8 +258,8 @@ pytest --cov=app tests/
 
 ⭐ Se este projeto foi útil, considere dar uma estrela!
 
-Feito com 🦟 e ❤️ em Manaus, AM · TCC — ADS Fametro 2026
+Manaus, AM · TCC — ADS Fametro 2026
 
-Made with ❤️ by [Kaell Soares](https://github.com/kakaushouw) e equipe
+feito com amor by equipe
 
 </div>
