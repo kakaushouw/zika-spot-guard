@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="docs/assets/logo.png" alt="ZikaMaps Logo" width="140"/>
+![image alt](https://github.com/kakaushouw/zika-maps-front/blob/9450c375245d5588922a81564a1a47effe7f477d/logo%20zikamaps.png)
 
 **Plataforma cidadã de monitoramento e mapeamento de focos do *Aedes aegypti* em Manaus — AM**
 
