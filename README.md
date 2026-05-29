@@ -52,10 +52,6 @@ O sistema público de notificação (SINAN) é passivo e depende exclusivamente 
 |:---:|:---:|
 | <img src="docs/screenshots/denuncia.png" alt="Denúncia" width="400"/> | <img src="docs/screenshots/historico.png" alt="Histórico" width="400"/> |
 
-| Painel do Agente | Mapa de Calor |
-|:---:|:---:|
-| <img src="docs/screenshots/painel.png" alt="Painel" width="400"/> | <img src="docs/screenshots/heatmap.png" alt="Heatmap" width="400"/> |
-
 </div>
 
 ### 🎞️ GIF Demonstrativo
